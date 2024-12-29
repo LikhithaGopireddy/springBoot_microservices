@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  school-service:
+    build:
+      context: ./schoolservice
+    container_name: school-service
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+    depends_on:
+      - student-service
+
+  student-service:
+    build:
+      context: ./studentservice
+    container_name: student-service
+    ports:
+      - "8081:8081"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: true
